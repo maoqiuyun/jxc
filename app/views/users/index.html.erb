@@ -1,0 +1,36 @@
+<%= render :partial => "sub_menu"%>
+<h2><a href="#">账户管理</a> &raquo; <a href="#" class="active">用户列表</a></h2>
+
+<div id="main">
+	<%= flash[:notice]%>
+	<table class="jNice">
+		<tr>
+			<td>用户名</td>
+			<td>姓名</td>
+			<td>性别</td>
+			<td>年龄</td>
+			<td >电话</td>
+			<td >邮箱</td>
+			<td >角色</td>
+			<td class="action">
+				<span class="edit">修改</span>
+				<span class="delete">删除</span>
+			<td>
+		</tr>
+			<% @users.each do |user|%>
+				<tr>
+					<td><%= user.user_name %></td>
+					<td><%= user.name %></td>
+					<td><%= User::GENDER[user.gender] %></td>
+					<td><%= user.age %></td>
+					<td><%= user.phone %></td>
+					<td><%= user.email %></td>
+					<td><%= User::ROLES[user.roles] %></td>
+					<td class="action">
+						<%= link_to '修改', edit_user_path(user) ,:class => "edit" %>
+						<%= link_to "删除",user,:confirm => '确定撤销', :method => :delete  ,:class => "delete" %>
+					<td>
+				<tr>
+			<% end %>
+	</table>
+</div>

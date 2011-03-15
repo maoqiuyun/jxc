@@ -1,0 +1,32 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+	});
+</script>
+<style type="text/css">
+	table em{color:red;}
+</style>
+<% content_for :sub_menu do %>
+	<li><%=link_to "日志信息",logs_index_url %></li>
+<%end%>
+<h2><a href="<%=logs_index_url%>">系统日志</a> &raquo; <a href="#" class="active">日志信息</a></h2>
+<div id="main">
+	<%= form_tag logs_index_path ,:method => "get" do %>
+		<h3>开始时间:<%= text_field_tag :start_date, @start_date ,:class => "datepicker" %>结束时间:<%= text_field_tag :end_date ,@end_date,:class => "datepicker" %><%= submit_tag "提交"%></h3>
+	<% end %>
+	<table>
+		<tr>
+			<td>操作人</td>
+			<td>内容</td>
+			<td>时间</td>
+		</tr>
+		<% @logs.each do |log| %>
+			<tr>
+				<td><%= log.user.name %></td>
+				<td><%=raw log.content %></td>
+				<td><%= log.created_at %></td>
+			</tr>
+		<% end %>
+	</table>
+	<%= will_paginate @logs ,:class => 'digg_pagination'%>
+</div>

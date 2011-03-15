@@ -1,0 +1,18 @@
+<script>
+	$(document).ready(function(){
+		$(".select_this").live("click", function(){
+			$("#product_supplier_id").val($(this).attr("data-supplier-id"));
+			$("#supplier_name").val($(this).attr("data-supplier-name"));
+			$.fancybox.close();
+		});
+		$('.pagination a').live("click", function(){  
+         $.get(this.href, null, null, 'script');     
+         return false;     
+     });
+	});
+</script>
+<div id="main">
+	<div id="suppliers_info">
+		<%= render :partial => "suppliers"%>
+	</div>
+</div>

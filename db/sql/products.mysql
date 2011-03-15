@@ -1,0 +1,22 @@
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS `products`;
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `supplier_id` int(11) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `brand` varchar(255) DEFAULT NULL,
+  `brand_type` varchar(255) DEFAULT NULL,
+  `number` int(11) DEFAULT 0,	
+  `price` float DEFAULT 0,
+  `remark` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+SET FOREIGN_KEY_CHECKS = 1;

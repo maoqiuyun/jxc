@@ -1,0 +1,18 @@
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS `logs`;
+
+CREATE TABLE `logs` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
+  `item_type` varchar(255) DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+SET FOREIGN_KEY_CHECKS = 1;

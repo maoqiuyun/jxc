@@ -1,0 +1,23 @@
+<table>
+	<tr>
+		<td>供应商名称</td>
+		<td>联系人</td>
+		<td>电话</td>
+		<td>地址</td>
+		<td>邮箱</td>
+		<td>备注</td>
+		<td class="action"><a href="#" class="view">选择供应商</a></td>
+	</tr>
+	<% @suppliers.each do |supplier| %>
+		<tr>
+			<td><%= supplier.firm_name %></td>
+			<td><%= supplier.name %></td>
+			<td><%= supplier.phone %></td>
+			<td><%= supplier.address %></td>
+			<td><%= supplier.email %></td>
+			<td><%= supplier.remark %></td>
+			<td class="action"><a href="#" class="view select_this" data-supplier-name="<%=supplier.firm_name %>" data-supplier-id=<%=supplier.id%>>选择供应商</a></td>
+	</tr>			
+	<% end %>
+</table>
+<%= will_paginate @suppliers %>

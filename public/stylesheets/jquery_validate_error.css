@@ -1,0 +1,8 @@
+label.error {
+	background:url("http://js.51hejia.com/img/icons/alert.gif") no-repeat scroll left 4px transparent;
+	color:red;
+	float:none;
+	padding-left:1.5em;
+	vertical-align:middle;
+	padding-top:5px;
+}

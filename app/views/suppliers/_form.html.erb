@@ -1,0 +1,19 @@
+<script>
+	$(document).ready(function(){
+		$.validator.setDefaults({ 
+			onkeyup: false
+		});
+		$(".supplier_form").validate();
+	});
+</script>
+<% form_for @supplier ,:html => {:class => "supplier_form" , :method => @supplier.new_record? ? :post : :put } do |f| %>
+	<table>
+		<tr><td>供应商名称:</td><td><%= f.text_field :firm_name,  :class => "required "%></td></tr>
+		<tr><td>联系人:</td><td><%= f.text_field :name,  :class => "required "%></td></tr>
+		<tr><td>email:</td><td><%= f.text_field :email,  :class => "required email"%></td></tr>
+		<tr><td>电话:</td><td><%= f.text_field :phone,  :class => "required "%></td></tr>
+		<tr><td>地址:</td><td><%= f.text_field :address,  :class => "required "%></td></tr>
+		<tr><td>备注:</td><td><%= f.text_area :remark ,:rows => 4%></td></tr>
+		<tr><td colspan="2"><%= f.submit "submit" ,:value => "提交" %></td></tr>
+	</table>
+<% end %>

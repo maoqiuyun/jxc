@@ -1,0 +1,21 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.validator.setDefaults({ 
+			onkeyup: false
+		});
+		$(".user_form").validate();
+	});
+</script>
+<% form_for @user ,:html => {:class => "user_form",:method => (@user.new_record? ? :post : :put)} do |f| %>
+<table>
+	<tr><td>用户名:</td><td><%= f.text_field :user_name,  :class => "required "%></td></tr>
+	<tr><td>密码:</td><td><%= f.password_field :password, :class => "required"%></td></tr>
+	<tr><td>姓名:</td><td><%= f.text_field :name, :class => "required"%></td></tr>
+	<tr><td>年龄:</td><td><%= f.text_field :age%></td></tr>
+	<tr><td>性别:</td><td><%= f.select :gender, User::GENDER.invert %></td></tr>
+	<tr><td>邮箱:</td><td><%= f.text_field :email ,:class => "email" %></td></tr>
+	<tr><td>电话:</td><td><%= f.text_field :phone %></td></tr>
+	<tr><td>角色:</td><td><%= f.select :roles, User::ROLES.invert %></td></tr>
+  <tr><td colspan="2"><%= f.submit "submit" ,:value => "提交" %></td></tr>
+</table>
+<% end %>

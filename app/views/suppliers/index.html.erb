@@ -1,0 +1,36 @@
+<%= render :partial => "sub_menu"%>
+<h2><a href="#">供应商管理</a> &raquo; <a href="#" class="active">供应商列表</a></h2>
+<div id="main">
+	<%= flash[:notice] %>
+	<table>
+		<tr>
+			<td>供应商名称</td>
+			<td>联系人</td>
+			<td>电话</td>
+			<td>地址</td>
+			<td>邮箱</td>
+			<td>备注</td>
+			<td class="action">
+				<a href="#" class="view">商品信息</a>
+				<a href="#" class="edit">修改</a>
+				<a href="#" class="delete">删除</a>
+			</td>
+		</tr>
+		<% @suppliers.each do |supplier| %>
+			<tr>
+				<td><%= supplier.firm_name %></td>
+				<td><%= supplier.name %></td>
+				<td><%= supplier.phone %></td>
+				<td><%= supplier.address %></td>
+				<td><%= supplier.email %></td>
+				<td><%= supplier.remark %></td>
+				<td class="action">
+					<a href="#" class="view">商品信息</a>
+					<%= link_to "修改",edit_supplier_path(supplier) ,:class => "edit" %>
+					<%= link_to "删除",supplier,:method => "delete" ,:confirm => '确定撤销' ,:class => "delete"%>
+				</td>
+		</tr>			
+		<% end %>
+	</table>
+	 <%= will_paginate @suppliers %>
+</div>

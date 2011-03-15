@@ -1,0 +1,18 @@
+SET NAMES utf8;
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) DEFAULT NULL,
+	`password` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `gender` tinyint(4) DEFAULT 1,
+	`email` varchar(255) DEFAULT NULL,
+	`phone` varchar(255) DEFAULT NULL,
+	`roles` tinyint(4) DEFAULT 1,
+	`status` tinyint(4) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARSET=utf8;
+
