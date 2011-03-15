@@ -9,11 +9,20 @@ Jxc::Application.routes.draw do
   match 'home' => 'home#index', :as => :home  
   
   resources :users
+  
   resources :suppliers
-  resources :products do 
+
+  resources :products do
+    
+    member do
+      post 'regain'
+    end
+    
     collection do
       get 'select_suppliers'
+      get 'disuse'
     end
+    
   end
   
   

@@ -16,11 +16,22 @@
 </script>
 <% form_for @product, :html => {:class => "product_form" ,:method => @product.new_record? ? :post : :put} do |f| %>
 	<table>
-		<tr><td>商品名称:</td><td><%= f.text_field :name , :value => ""%></td></tr>
-		<tr><td>供应商:</td><td><%= f.hidden_field :supplier_id %><input type="text" id="supplier_name"><%= link_to "选择供应商" ,select_suppliers_products_path, :class => "select_supplier"%></td></tr>
-		<tr><td>商品名称:</td><td><%= f.text_field :brand , :value => ""%></td></tr>
-		<tr><td>商品名称:</td><td><%= f.text_field :brand_type , :value => ""%></td></tr>
-		<tr><td>商品名称:</td><td><%= f.text_field :price , :value => ""%></td></tr>
+		<tr><td>商品名称:</td><td><%= f.text_field :name %></td></tr>
+		<tr>
+			<td>供应商:</td>
+			<td>
+				<% if @supplier.nil? %>
+					<%= f.hidden_field :supplier_id %>
+					<%= text_field_tag :supplier_name ,(@product.supplier.firm_name unless @product.new_record?) %>
+					<%= link_to "选择供应商" ,select_suppliers_products_path, :class => "select_supplier"%>
+				<% else %>
+					<%= @supplier.firm_name %><%= f.hidden_field :supplier_id ,:value => @supplier.id %>
+				<% end %>
+			</td>
+		</tr>
+		<tr><td>品牌:</td><td><%= f.text_field :brand %></td></tr>
+		<tr><td>型号:</td><td><%= f.text_field :brand_type %></td></tr>
+		<tr><td>价格:</td><td><%= f.text_field :price %></td></tr>
 		<tr><td>备注:</td><td><%= f.text_area :remark ,:rows => 4%></td></tr>
 		<tr><td colspan="2"><%= f.submit "submit" ,:value => "提交" %></td></tr>
 	</table>

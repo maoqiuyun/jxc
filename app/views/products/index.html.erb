@@ -1,2 +1,44 @@
 <%= render :partial => "sub_menu"%>
 <h2><a href="#">库存信息</a> &raquo; <a href="#" class="active">库存信息查看</a></h2>
+<div id="main">
+	<%= form_tag products_path ,:method => "get" do %>
+		<h3>
+			名称:<%= text_field_tag :name, @name ,:size => 8 %>
+			品牌:<%= text_field_tag :brand ,@brand ,:size => 8 %>
+			型号:<%= text_field_tag :brand_type ,@brand_type ,:size => 8 %>
+			供应商:<%= text_field_tag :supplier_name ,@supplier_name ,:size => 10 %>
+			<%= submit_tag "提交"%>
+		</h3>
+	<% end %>
+	<table>
+		<tr>
+			<td>商品名称</td>
+			<td>品牌</td>
+			<td>型号</td>
+			<td>供应商</td>
+			<td>单价</td>
+			<td>数量</td>
+			<td>备注</td>
+			<td class="action">
+				<a href="#" class="edit">修改</a>
+				<a href="#" class="delete">下架</a>
+			</td>
+		</tr>
+		<% @products.each do |product| %>
+			<tr>
+				<td><%= product.name %></td>
+				<td><%= product.brand %></td>
+				<td><%= product.brand_type %></td>
+				<td><%= product.supplier.firm_name %></td>
+				<td><%= product.price %></td>
+				<td><%= product.number %></td>
+				<td><%= product.remark %></td>
+				<td class="action">
+					<%= link_to "修改",edit_product_path(product),:class => "edit" %>
+					<%= link_to "下架",product,:method => "delete",:confirm => "确定商品下架?",:class => "edit" %>
+				</td>
+			</tr>			
+		<% end %>
+	</table>
+	<%= will_paginate @products%>
+</div>
