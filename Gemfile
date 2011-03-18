@@ -8,6 +8,9 @@ gem 'rails', '3.0.5'
 gem 'mysql2'
 gem 'cancan'
 gem 'will_paginate'
+gem 'meta_search'   #,:git => "git://github.com/ernie/meta_search.git"
+gem 'meta_where'  # Last officially released gem
+ # gem "meta_where", :git => "git://github.com/ernie/meta_where.git" # Track git repo
 
 # Use unicorn as the web server
 # gem 'unicorn'

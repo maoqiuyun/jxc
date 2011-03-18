@@ -146,6 +146,7 @@ h2 a:hover { text-decoration: underline; }
 	width: 700px;
 	float: right;
 	padding: 0 19px 0 0;
+	margin-bottom: 15px;
 }
 
 h3 {
@@ -160,6 +161,7 @@ h3 {
 #main table {
 	border-top: 1px solid #ddd;
 	width: 700px;
+	margin-bottom: 8px;
 }
 
 #main table tr td {
@@ -197,11 +199,18 @@ h3 {
 
 #main fieldset p { margin: 0 0 14px 0; float: left; width: 100%;  }
 
-#main fieldset label {
+/*#main fieldset label {
 	display: block;
 	width: 100%;
 	margin: 0 0 7px 0;
 	line-height: 12px;
+}*/
+
+#main fieldset label {
+	display: block;
+	margin: 6px 8px 7px 0;
+	line-height: 12px;
+	float:left;
 }
 
 #main fieldset .text-long {

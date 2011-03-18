@@ -1,3 +1,4 @@
+<% content_for :head do%>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
@@ -5,14 +6,19 @@
 </script>
 <style type="text/css">
 	table em{color:red;}
+	input.ui-button {margin-left:10px;padding:3.5px 18px;}
 </style>
+<% end %>
 <% content_for :sub_menu do %>
-	<li><%=link_to "日志信息",logs_index_url %></li>
+	<li><%=link_to "日志信息",logs_url %></li>
 <%end%>
-<h2><a href="<%=logs_index_url%>">系统日志</a> &raquo; <a href="#" class="active">日志信息</a></h2>
+<h2><a href="<%= logs_url %>">系统日志</a> &raquo; <a href="#" class="active">日志信息</a></h2>
 <div id="main">
-	<%= form_tag logs_index_path ,:method => "get" do %>
-		<h3>开始时间:<%= text_field_tag :start_date, @start_date ,:class => "datepicker" %>结束时间:<%= text_field_tag :end_date ,@end_date,:class => "datepicker" %><%= submit_tag "提交"%></h3>
+	<% form_for @search do |f|%>
+		<h3>
+			开始时间:<%= f.text_field :created_at_gte ,:class => "datepicker" ,:size => 8 %>
+			结束时间:<%= f.text_field :created_at_lte ,:class => "datepicker" ,:size => 8 %>
+			<%= f.submit "搜 索" ,:class => "ui-button ui-state-default ui-corner-all" %></h3>
 	<% end %>
 	<table>
 		<tr>

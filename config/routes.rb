@@ -13,7 +13,6 @@ Jxc::Application.routes.draw do
   resources :suppliers
 
   resources :products do
-    
     member do
       post 'regain'
     end
@@ -22,11 +21,10 @@ Jxc::Application.routes.draw do
       get 'select_suppliers'
       get 'disuse'
     end
-    
   end
   
-  
-  get "logs/index"
+  resources :logs
+
   # get "users/index"
   # 
   # get "users/new"

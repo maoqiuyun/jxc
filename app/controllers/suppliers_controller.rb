@@ -1,6 +1,7 @@
 class SuppliersController < ApplicationController
   def index
-    @suppliers = Supplier.all.paginate :page => params[:page], :per_page => 2
+    @search = Supplier.search(params[:search])
+    @suppliers = @search.order("id desc").paginate :page => params[:page], :per_page => 2
   end
   
   def show

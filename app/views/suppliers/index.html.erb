@@ -1,7 +1,19 @@
+<% content_for :head do%>
+<style>
+	input.ui-button {margin-left:10px;padding:3.5px 18px;}
+</style>
+<% end %>
 <%= render :partial => "sub_menu"%>
 <h2><a href="#">供应商管理</a> &raquo; <a href="#" class="active">供应商列表</a></h2>
 <div id="main">
-	<%= flash[:notice] %>
+	<% if flash[:notice] %><div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0pt 0.7em;"><%= flash[:notice] %></div><% end %>
+	<%= form_for @search do |f|%>
+		<h3>
+			供应商名称:<%= f.text_field :firm_name_contains , :size => 10 %>
+			联系人:<%= f.text_field :name_contains , :size => 10 %>
+			<%= f.submit "搜 索" ,:class => "ui-button ui-state-default ui-corner-all"%>
+		</h3>
+	<% end %>
 	<table>
 		<tr>
 			<td>供应商名称</td>
