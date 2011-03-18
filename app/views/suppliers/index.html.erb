@@ -6,7 +6,7 @@
 <%= render :partial => "sub_menu"%>
 <h2><a href="#">供应商管理</a> &raquo; <a href="#" class="active">供应商列表</a></h2>
 <div id="main">
-	<% if flash[:notice] %><div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0pt 0.7em;"><%= flash[:notice] %></div><% end %>
+	<% if flash[:notice] %><div class="ui-state-highlight ui-corner-all" style="margin-top: 10px; padding: 5pt 3em;"><%= flash[:notice] %></div><% end %>
 	<%= form_for @search do |f|%>
 		<h3>
 			供应商名称:<%= f.text_field :firm_name_contains , :size => 10 %>
@@ -22,10 +22,8 @@
 			<td>地址</td>
 			<td>邮箱</td>
 			<td>备注</td>
-			<td class="action">
-				<a href="#" class="view">商品信息</a>
-				<a href="#" class="edit">修改</a>
-				<a href="#" class="delete">删除</a>
+			<td class="action" style="text-align:center;">
+				<a href="#" class="view">操作</a>
 			</td>
 		</tr>
 		<% @suppliers.each do |supplier| %>
@@ -37,7 +35,8 @@
 				<td><%= supplier.email %></td>
 				<td><%= supplier.remark %></td>
 				<td class="action">
-					<%= link_to "商品信息",new_product_path(:supplier_id => supplier.id),:class => "view"%>
+					<%= link_to "商品信息","#{products_path}?search[supplier_firm_name_contains]=#{supplier.firm_name}",:class => "view"%>
+					<%= link_to "添加商品",new_product_path(:supplier_id => supplier.id),:class => "view"%>
 					<%= link_to "修改",edit_supplier_path(supplier) ,:class => "edit" %>
 					<%= link_to "删除",supplier,:method => "delete" ,:confirm => '确定撤销' ,:class => "delete"%>
 				</td>

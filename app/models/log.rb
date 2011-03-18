@@ -5,8 +5,8 @@ class Log < ActiveRecord::Base
   
   before_save :save_user_id
   
-  scope :start_date, lambda { |start_date| where("created_at >= ?", start_date) unless start_date.blank? } 
-  scope :end_date, lambda { |end_date| where("created_at <= ?", end_date) unless end_date.blank? } 
+  # scope :start_date, lambda { |start_date| where("created_at >= ?", start_date) unless start_date.blank? } 
+  # scope :end_date, lambda { |end_date| where("created_at <= ?", end_date) unless end_date.blank? } 
   
   private 
   def save_user_id

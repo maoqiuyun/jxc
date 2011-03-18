@@ -1,21 +1,32 @@
+<% content_for :head do%>
+<style>
+	input.ui-button {margin-left:10px;padding:3.5px 18px;}
+</style>
+<% end %>
 <%= render :partial => "sub_menu"%>
 <h2><a href="#">账户管理</a> &raquo; <a href="#" class="active">用户列表</a></h2>
-
 <div id="main">
-	<%= flash[:notice]%>
+	<% if flash[:notice] %><div class="ui-state-highlight ui-corner-all" style="margin-top: 10px; padding: 5pt 3em;"><%= flash[:notice] %></div><% end %>
+	<h3>
+		<% form_for @search do |f| %>
+			用户名:<%= f.text_field :user_name_contains %>
+			姓名:<%= f.text_field :name_contains %>
+			电话:<%= f.text_field :phone_contains %>
+			<%= f.submit "搜 索" ,:class => "search_button ui-button ui-state-default ui-corner-all"%>
+		<% end %>
+	</h3>
 	<table class="jNice">
 		<tr>
 			<td>用户名</td>
 			<td>姓名</td>
 			<td>性别</td>
 			<td>年龄</td>
-			<td >电话</td>
-			<td >邮箱</td>
-			<td >角色</td>
-			<td class="action">
-				<span class="edit">修改</span>
-				<span class="delete">删除</span>
-			<td>
+			<td>电话</td>
+			<td>邮箱</td>
+			<td>角色</td>
+			<td class="action" style="text-align:center;">
+				<a href="#" class="view">操作</a>
+			</td>
 		</tr>
 			<% @users.each do |user|%>
 				<tr>
@@ -29,8 +40,9 @@
 					<td class="action">
 						<%= link_to '修改', edit_user_path(user) ,:class => "edit" %>
 						<%= link_to "删除",user,:confirm => '确定撤销', :method => :delete  ,:class => "delete" %>
-					<td>
+					</td>
 				<tr>
 			<% end %>
 	</table>
+	<%= will_paginate @suppliers %>
 </div>

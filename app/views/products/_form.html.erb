@@ -1,3 +1,4 @@
+<% content_for :head do %>
 <%= stylesheet_link_tag "http://js1.51hejia.net/js/jquery/plugins/fancybox/1.3.1/jquery.fancybox.css" %>
 <%= javascript_include_tag "http://js2.51hejia.net/js/jquery/plugins/fancybox/1.3.1/jquery.fancybox.js" %>
 <script>
@@ -14,6 +15,7 @@
 	  });
 	});
 </script>
+<% end %>
 <% form_for @product, :html => {:class => "product_form" ,:method => @product.new_record? ? :post : :put} do |f| %>
 	<table>
 		<tr><td>商品名称:</td><td><%= f.text_field :name %></td></tr>

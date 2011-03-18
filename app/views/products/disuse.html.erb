@@ -1,4 +1,33 @@
 <%= render :partial => "sub_menu"%>
 <h2><a href="#">库存信息</a> &raquo; <a href="#" class="active">已下架商品</a></h2>
 <div id="main">
+	<table>
+		<tr>
+			<td>商品名称</td>
+			<td>品牌</td>
+			<td>型号</td>
+			<td>供应商</td>
+			<td>单价</td>
+			<td>数量</td>
+			<td>备注</td>
+			<td class="action"  style="text-align: center;">
+				<a href="#" class="edit">操作</a>
+			</td>
+		</tr>
+		<% @products.each do |product| %>
+			<tr>
+				<td><%= product.name %></td>
+				<td><%= product.brand %></td>
+				<td><%= product.brand_type %></td>
+				<td><%= product.supplier.firm_name %></td>
+				<td><%= product.price %></td>
+				<td><%= product.number %></td>
+				<td><%= product.remark %></td>
+				<td class="action">
+					<%= link_to "恢复上架",regain_product_path(product),:class => "edit",:confirm => "确定商品重新上架?" ,:method => :post %>
+				</td>
+			</tr>			
+		<% end %>
+	</table>
+	<%= will_paginate @products%>
 </div>
