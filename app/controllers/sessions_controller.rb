@@ -21,7 +21,6 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    p "333333333333333"
     session[:user] = nil
     redirect_to root_url
   end

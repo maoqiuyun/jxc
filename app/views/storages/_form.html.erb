@@ -13,17 +13,36 @@
 
 		      }	
 		  });
+		//(/^(\+|-)?\d+$/.test()
+			$.validator.setDefaults({ 
+				onkeyup: false
+			});
+			$(".storage_form").validate();
 		});
+		var the_number = 0
+		$("#products_talbe input[name*='product_id[]']").each(function(){
+			the_number = 1
+		});
+		
 	</script>
+	<style>
+		.form_ul li {line-height:29px}
+		.li_font {font-size: 14px;}
+		.li_bottom {border-bottom: 1px solid #DDDDDD;}
+		.form_ul li span{padding: 0px 20px 0 0px;}
+		.select_products {text-decoration: none;}
+	</style>
 <% end %>
-<%= form_for(@storage) do |f| %>
+<%= form_for @storage ,:html => {:class => "storage_form"} do |f| %>
   <div>
-		<ul>
-			<li>入库人:<%= @current_user.name %><%=f.hidden_field :user_id, :value => @current_user.id %></li>
-      <li><%= link_to "点击添加商品",select_products_products_path,:class => "select_products" %></li>
+		<ul class="form_ul">
+			<li class="li_font li_bottom"><span>入库人:</span><%= @current_user.name %><%=f.hidden_field :user_id, :value => @current_user.id %></li>
 			<li>
 				<div id="save_products">
-					<table id="products_talbe">
+					<table id="products_talbe" >
+						<tr>
+							<td colspan="6" align="center"><span style="text-align:center;">商品信息</span><span style="float:right;"><%= link_to "点击此处添加商品",select_products_products_path,:class => "select_products"  %><span></td>
+						</tr>
 						<tr>
 							<td>名称</td>
 							<td>品牌</td>
@@ -35,6 +54,9 @@
 					</table>
 				</div>
 			</li>
+			<li class="li_font li_bottom"><span>总金额:</span>0.0</li>
+			<li class="li_font li_bottom"><span>备注:</span><%= f.text_area :remark ,:rows => 4 %></li>
+			<li><%= f.submit "提交",:class => "search_button ui-button ui-state-default ui-corner-all", :style => "padding: 0.4em 3em;"%></li>
 		</ul>
   </div>
 <% end %>

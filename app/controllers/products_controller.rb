@@ -69,7 +69,6 @@ class ProductsController < ApplicationController
   #入库出库添加商品
   def select_products
     @search = Product.search params[:search]
-    p params[:search]
     @products = @search.order("id desc").paginate :page => params[:page], :per_page => 2
     render :layout => false
   end
