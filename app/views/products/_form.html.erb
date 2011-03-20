@@ -1,6 +1,6 @@
 <% content_for :head do %>
-<%= stylesheet_link_tag "http://js1.51hejia.net/js/jquery/plugins/fancybox/1.3.1/jquery.fancybox.css" %>
-<%= javascript_include_tag "http://js2.51hejia.net/js/jquery/plugins/fancybox/1.3.1/jquery.fancybox.js" %>
+<%= stylesheet_link_tag "jquery.fancybox.css" %>
+<%= javascript_include_tag "jquery.fancybox.js" %>
 <script>
 	$(document).ready(function(){
 		$('.select_supplier').fancybox({
@@ -13,6 +13,11 @@
 	        
 	      }	
 	  });
+		$(".select_this").live("click", function(){
+			$("#product_supplier_id").val($(this).attr("data-supplier-id"));
+			$("#supplier_name").val($(this).attr("data-supplier-name"));
+			$.fancybox.close();
+		});
 	});
 </script>
 <% end %>
@@ -35,6 +40,6 @@
 		<tr><td>型号:</td><td><%= f.text_field :brand_type %></td></tr>
 		<tr><td>价格:</td><td><%= f.text_field :price %></td></tr>
 		<tr><td>备注:</td><td><%= f.text_area :remark ,:rows => 4%></td></tr>
-		<tr><td colspan="2"><%= f.submit "submit" ,:value => "提交" %></td></tr>
+		<tr><td colspan="2"><%= f.submit "submit" ,:value => "提交",:class => "search_button ui-button ui-state-default ui-corner-all", :style => "padding: 0.4em 3em;" %></td></tr>
 	</table>
 <% end %>

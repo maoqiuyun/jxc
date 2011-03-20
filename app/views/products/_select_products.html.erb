@@ -1,0 +1,36 @@
+<h3>
+<% form_for @search ,:url => select_products_products_path  do |f| %>
+	名称:<%= f.text_field :name_contains %>
+	品牌:<%= f.text_field :brand_contains %>
+	型号:<%= f.text_field :brand_type_contains %>
+	供应商:<%= f.text_field :supplier_firm_name_contains %>
+	<%= f.submit "搜 索" ,:class => "search_button ui-button ui-state-default ui-corner-all"%>
+<% end %>
+</h3>
+<table>
+	<tr>
+		<td>商品名称</td>
+		<td>品牌</td>
+		<td>型号</td>
+		<td>供应商</td>
+		<td>单价</td>
+		<td>数量</td>
+		<td class="action" style="text-align:center;">
+			<a href="#" class="edit">点击添加</a>
+		</td>
+	</tr>
+	<% @products.each do |product| %>
+		<tr>
+			<td><%= product.name %></td>
+			<td><%= product.brand %></td>
+			<td><%= product.brand_type %></td>
+			<td><%= product.supplier.firm_name %></td>
+			<td><%= product.price %></td>
+			<td><%= product.number %></td>
+			<td class="action">
+				<a href="#" class="edit select_this" data-id="<%=product.id%>" data-name="<%=product.name%>" data-brand="<%= product.brand %>" data-brand_type="<%=product.brand_type%>" data-supplier="<%= product.supplier.firm_name %>">点击添加</a>
+			</td>
+		</tr>			
+	<% end %>
+</table>
+<%= will_paginate @products ,:class => "ajax_pagination pagination"%>

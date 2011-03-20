@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
   end
 
   def select_suppliers
-    @suppliers = Supplier.all.paginate :page => params[:page], :per_page => 5
+    @suppliers = Supplier.all.paginate :page => params[:page], :per_page => 2
     render :layout => false
   end
   
@@ -64,6 +64,14 @@ class ProductsController < ApplicationController
     product.regain
     flash[:notice] = "恢复上架成功"
     redirect_to products_url
+  end
+  
+  #入库出库添加商品
+  def select_products
+    @search = Product.search params[:search]
+    p params[:search]
+    @products = @search.order("id desc").paginate :page => params[:page], :per_page => 2
+    render :layout => false
   end
   
   private 

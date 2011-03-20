@@ -1,0 +1,40 @@
+<% content_for :head do %>
+	<%= stylesheet_link_tag "jquery.fancybox.css" %>
+	<%= javascript_include_tag "jquery.fancybox.js" ,"select_products.js" %>
+	<script>
+		$(document).ready(function(){
+			$('.select_products').fancybox({
+		      'autoDimensions' : false,
+		      'width':740,
+		      'height': 300,
+		      "scrolling" : "no",
+		      "titleShow": false,
+		      onComplete	:	function() {
+
+		      }	
+		  });
+		});
+	</script>
+<% end %>
+<%= form_for(@storage) do |f| %>
+  <div>
+		<ul>
+			<li>入库人:<%= @current_user.name %><%=f.hidden_field :user_id, :value => @current_user.id %></li>
+      <li><%= link_to "点击添加商品",select_products_products_path,:class => "select_products" %></li>
+			<li>
+				<div id="save_products">
+					<table id="products_talbe">
+						<tr>
+							<td>名称</td>
+							<td>品牌</td>
+							<td>型号</td>
+							<td>供应商</td>
+							<td>单价</td>
+							<td>数量</td>
+						</tr>
+					</table>
+				</div>
+			</li>
+		</ul>
+  </div>
+<% end %>

@@ -1,7 +1,5 @@
 Jxc::Application.routes.draw do
-
-
-
+  
   root :to => "sessions#index"
   get "sessions/index"
   post "sessions/verify"
@@ -18,13 +16,15 @@ Jxc::Application.routes.draw do
     end
     
     collection do
+      get 'select_products'
       get 'select_suppliers'
       get 'disuse'
     end
   end
   
   resources :logs
-
+  
+  resources :storages
   # get "users/index"
   # 
   # get "users/new"

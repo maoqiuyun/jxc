@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS `storages`;
+CREATE TABLE `storages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+	`user_id` varchar(255) DEFAULT NULL,
+	`price` float DEFAULT 0,
+	`remark` varchar(255) DEFAULT NULL,
+	`status` tinyint(4) DEFAULT 0,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARSET=utf8;
+

@@ -1,0 +1,11 @@
+DROP TABLE IF EXISTS `storage_products`;
+CREATE TABLE `storage_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `storage_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+	`number` int(11) DEFAULT 0,
+	`remark` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARSET=utf8;

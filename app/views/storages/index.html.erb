@@ -1,0 +1,42 @@
+<% content_for :head do%>
+<style>
+	input.ui-button {margin-left:10px;padding:3.5px 18px;}
+</style>
+<% end %>
+<%= render :partial => "sub_menu"%>
+<h2><a href="#">商品入库</a> &raquo; <a href="#" class="active">入库单列表</a></h2>
+<div id="main">
+	<% if flash[:notice] %><div class="ui-state-highlight ui-corner-all" style="margin-top: 10px; padding: 5pt 3em;"><%= flash[:notice] %></div><% end %>
+	<%= form_for @search do |f|%>
+		<h3>
+			供应商名称:<%= f.text_field :remark_contains , :size => 10 %>
+			联系人:<%= f.text_field :remark_contains , :size => 10 %>
+			<%= f.submit "搜 索" ,:class => "ui-button ui-state-default ui-corner-all"%>
+		</h3>
+	<% end %>
+	<table>
+		<tr>
+			<td>开单人</td>
+			<td>金额</td>
+			<td>时间</td>
+			<td>备注</td>
+			<td class="action" style="text-align:center;">
+				<a href="#" class="view">操作</a>
+			</td>
+		</tr>
+		<% @storages.each do |storage| %>
+			<tr>
+				<td><%= storage.user_id %></td>
+				<td><%= storage.price %></td>
+				<td><%= storage.created_at %></td>
+				<td><%= storage.remark %></td>
+				<td class="action">
+					<%= link_to '查看', storage,:class => "view" %>
+					<%= link_to '修改', edit_storage_path(storage) ,:class => "edit"  %>
+					<%= link_to '删除', storage, :confirm => '确定删除?', :method => :delete ,:class => "delete"%>
+				</td>
+		</tr>			
+		<% end %>
+	</table>
+	 <%= will_paginate @storages %>
+</div>
