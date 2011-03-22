@@ -13,17 +13,11 @@
 
 		      }	
 		  });
-		//(/^(\+|-)?\d+$/.test()
 			$.validator.setDefaults({ 
 				onkeyup: false
 			});
 			$(".storage_form").validate();
-		});
-		var the_number = 0
-		$("#products_talbe input[name*='product_id[]']").each(function(){
-			the_number = 1
-		});
-		
+		});		
 	</script>
 	<style>
 		.form_ul li {line-height:29px}
@@ -39,7 +33,7 @@
 			<li class="li_font li_bottom"><span>入库人:</span><%= @current_user.name %><%=f.hidden_field :user_id, :value => @current_user.id %></li>
 			<li>
 				<div id="save_products">
-					<table id="products_talbe" >
+					<table id="products_talbe" data-id-number=0 >
 						<tr>
 							<td colspan="6" align="center"><span style="text-align:center;">商品信息</span><span style="float:right;"><%= link_to "点击此处添加商品",select_products_products_path,:class => "select_products"  %><span></td>
 						</tr>

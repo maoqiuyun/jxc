@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   include ActivityLogger
   
   belongs_to :supplier
+  has_many :bill_of_products
   
   after_create :log_activity_create
   after_update :log_activity_update

@@ -1,5 +1,45 @@
-<p id="notice"><%= notice %></p>
-
-
-<%= link_to 'Edit', edit_storage_path(@storage) %> |
-<%= link_to 'Back', storages_path %>
+<% content_for :head do %>
+	<style>
+		.form_ul li {line-height:29px}
+		.li_font {font-size: 14px;}
+		.li_bottom {border-bottom: 1px solid #DDDDDD;}
+		.form_ul li span{padding: 0px 20px 0 0px;}
+		.select_products {text-decoration: none;}
+	</style>
+<% end %>
+<%= render :partial => "sub_menu"%>
+<h2><a href="<%=storages_path%>">商品入库</a> &raquo; <a href="#" class="active">入库单信息</a></h2>
+<div id="main">
+	<ul class="form_ul">
+		<li class="li_font li_bottom"><span>入库人:</span><%= @storage.user.name %></li>
+		<li>
+			<div id="save_products">
+				<table id="products_talbe" data-id-number=0 >
+					<tr>
+						<td colspan="6" align="center">商品信息</td>
+					</tr>
+					<tr>
+						<td>名称</td>
+						<td>品牌</td>
+						<td>型号</td>
+						<td>供应商</td>
+						<td>单价</td>
+						<td>数量</td>
+					</tr>
+					<% @storage.bill_of_products.each do |product|%>
+						<tr>
+							<td><%= product.product.name %></td>
+							<td><%= product.product.brand %></td>
+							<td><%= product.product.brand_type %></td>
+							<td><%= product.product.supplier.firm_name %></td>
+							<td><%= number_to_currency(product.price, :unit=>"￥")%></td>
+							<td><%= product.number%></td>
+						</tr>
+					<% end %>
+				</table>
+			</div>
+		</li>
+		<li class="li_font li_bottom"><span>总金额:</span><%= number_to_currency(@storage.price, :unit=>"￥")%></li>
+		<li class="li_font li_bottom"><span>备注:</span><%= @storage.remark %></li>
+	</ul>
+</div>

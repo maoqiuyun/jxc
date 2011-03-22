@@ -1,7 +1,7 @@
 class Log < ActiveRecord::Base
   
   belongs_to :item, :polymorphic => true
-  belongs_to :user, :class_name => "User"
+  belongs_to :user
   
   before_save :save_user_id
   

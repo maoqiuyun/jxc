@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS `bill_of_products`;
+CREATE TABLE `bill_of_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) DEFAULT NULL,
+  `item_type` varchar(255) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+	`number` int(11) DEFAULT 0,
+	`price` float DEFAULT 0,
+	`remark` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARSET=utf8;

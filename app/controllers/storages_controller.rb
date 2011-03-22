@@ -5,8 +5,6 @@ class StoragesController < ApplicationController
     @storages = @search.order("id desc").paginate :page => params[:page], :per_page => 10
   end
 
-  # GET /storages/1
-  # GET /storages/1.xml
   def show
     @storage = Storage.find(params[:id])
 
@@ -16,8 +14,6 @@ class StoragesController < ApplicationController
     end
   end
 
-  # GET /storages/new
-  # GET /storages/new.xml
   def new
     @storage = Storage.new
 
@@ -27,29 +23,21 @@ class StoragesController < ApplicationController
     end
   end
 
-  # GET /storages/1/edit
   def edit
     @storage = Storage.find(params[:id])
   end
 
-  # POST /storages
-  # POST /storages.xml
   def create
     @storage = Storage.new(params[:storage])
-
-    respond_to do |format|
-      if @storage.save
-        format.html { redirect_to(@storage, :notice => 'Storage was successfully created.') }
-        format.xml  { render :xml => @storage, :status => :created, :location => @storage }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @storage.errors, :status => :unprocessable_entity }
-      end
+    if @storage.save
+      flash[:notice] = "添加成功"
+      redirect_to storages_url
+    else
+      flash[:error] = "添加失败"
+      render :action => :new
     end
   end
 
-  # PUT /storages/1
-  # PUT /storages/1.xml
   def update
     @storage = Storage.find(params[:id])
 
@@ -64,16 +52,11 @@ class StoragesController < ApplicationController
     end
   end
 
-  # DELETE /storages/1
-  # DELETE /storages/1.xml
   def destroy
     @storage = Storage.find(params[:id])
     @storage.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(storages_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = "删除成功"
+    redirect_to storages_url
   end
   
 end

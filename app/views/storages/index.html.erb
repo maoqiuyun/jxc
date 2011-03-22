@@ -1,4 +1,9 @@
 <% content_for :head do%>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+	});
+</script>
 <style>
 	input.ui-button {margin-left:10px;padding:3.5px 18px;}
 </style>
@@ -9,8 +14,8 @@
 	<% if flash[:notice] %><div class="ui-state-highlight ui-corner-all" style="margin-top: 10px; padding: 5pt 3em;"><%= flash[:notice] %></div><% end %>
 	<%= form_for @search do |f|%>
 		<h3>
-			供应商名称:<%= f.text_field :remark_contains , :size => 10 %>
-			联系人:<%= f.text_field :remark_contains , :size => 10 %>
+			开始时间:<%= f.text_field :created_at_gte, :class => "datepicker" %>
+			结束时间:<%= f.text_field :created_at_lte, :class => "datepicker"%>
 			<%= f.submit "搜 索" ,:class => "ui-button ui-state-default ui-corner-all"%>
 		</h3>
 	<% end %>
@@ -32,7 +37,6 @@
 				<td><%= storage.remark %></td>
 				<td class="action">
 					<%= link_to '查看', storage,:class => "view" %>
-					<%= link_to '修改', edit_storage_path(storage) ,:class => "edit"  %>
 					<%= link_to '删除', storage, :confirm => '确定删除?', :method => :delete ,:class => "delete"%>
 				</td>
 		</tr>			

@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   
   include ActivityLogger
+  
+  has_many :storage
+  
   after_create :log_activity_create
   after_update :log_activity_update
   
