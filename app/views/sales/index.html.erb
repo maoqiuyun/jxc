@@ -9,7 +9,7 @@
 </style>
 <% end %>
 <%= render :partial => "sub_menu"%>
-<h2><a href="#">商品入库</a> &raquo; <a href="#" class="active">入库单列表</a></h2>
+<h2><a href="#">销售管理</a> &raquo; <a href="#" class="active">销售单列表</a></h2>
 <div id="main">
 	<% if flash[:notice] %><div class="ui-state-highlight ui-corner-all" style="margin-top: 10px; padding: 5pt 3em;"><%= flash[:notice] %></div><% end %>
 	<%= form_for @search do |f|%>
@@ -29,18 +29,18 @@
 				<a href="#" class="view">操作</a>
 			</td>
 		</tr>
-		<% @storages.each do |storage| %>
+		<% @sales.each do |sale| %>
 			<tr>
-				<td><%= storage.user.name %></td>
-				<td><%= number_to_currency(storage.price, :unit=>"￥") %></td>
-				<td><%= storage.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-				<td><%= storage.remark %></td>
+				<td><%= sale.user.name %></td>
+				<td><%= number_to_currency(sale.price, :unit=>"￥") %></td>
+				<td><%= sale.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+				<td><%= sale.remark %></td>
 				<td class="action">
-					<%= link_to '查看', storage,:class => "view" %>
-					<%= link_to '删除', storage, :confirm => '确定删除?', :method => :delete ,:class => "delete"%>
+					<%= link_to '查看', sale,:class => "view" %>
+					<%= link_to '删除', sale, :confirm => '确定删除?', :method => :delete ,:class => "delete"%>
 				</td>
 		</tr>			
 		<% end %>
 	</table>
-	 <%= will_paginate @storages %>
+	 <%= will_paginate @sales %>
 </div>

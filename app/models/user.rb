@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   
   include ActivityLogger
   
-  has_many :storage
+  has_many :storages
+  has_many :sales
   
   after_create :log_activity_create
   after_update :log_activity_update
@@ -17,6 +18,10 @@ class User < ActiveRecord::Base
     1 => "男",
     0 => "女"
   }
+  
+  def has_role? role
+    (ROLES[self.roles] & ROLES.invert[role]) == ROLES.invert[role]
+  end
   
   def delete
     update_attribute(:status, 1)

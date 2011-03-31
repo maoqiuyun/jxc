@@ -16,8 +16,7 @@
 			$.validator.setDefaults({ 
 				onkeyup: false
 			});
-			$(".storage_form").validate();
-			
+			$(".sale_form").validate();
 		});		
 	</script>
 	<style>
@@ -28,13 +27,13 @@
 		.select_products {text-decoration: none;}
 	</style>
 <% end %>
-<%= form_for @storage ,:html => {:class => "storage_form"} do |f| %>
-  <div>
+<% form_for @sale ,:html => {:class => "sale_form"} do |f| %>
+	<div>
 		<ul class="form_ul">
-			<li class="li_font li_bottom"><span>入库人:</span><%= @current_user.name %><%=f.hidden_field :user_id, :value => @current_user.id %></li>
+			<li class="li_font li_bottom"><span>销售人:</span><%= @current_user.name %><%=f.hidden_field :user_id, :value => @current_user.id %></li>
 			<li>
 				<div id="save_products">
-					<table id="products_talbe" data-this-type='storage' >
+					<table id="products_talbe" data-this-type='sale' >
 						<tr>
 							<td colspan="6" align="center"><span style="text-align:center;">商品信息</span><span style="float:right;"><%= link_to "点击此处添加商品",select_products_products_path,:class => "select_products"  %><span></td>
 						</tr>

@@ -1,5 +1,5 @@
 Jxc::Application.routes.draw do
-  
+
   root :to => "sessions#index"
   get "sessions/index"
   post "sessions/verify"
@@ -25,6 +25,8 @@ Jxc::Application.routes.draw do
   resources :logs
   
   resources :storages
+  
+  resources :sales
   # get "users/index"
   # 
   # get "users/new"

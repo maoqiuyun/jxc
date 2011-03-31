@@ -8,10 +8,10 @@
 	</style>
 <% end %>
 <%= render :partial => "sub_menu"%>
-<h2><a href="<%=storages_path%>">商品入库</a> &raquo; <a href="#" class="active">入库单信息</a></h2>
+<h2><a href="<%=sales_path%>">销售管理</a> &raquo; <a href="#" class="active">销售单信息</a></h2>
 <div id="main">
 	<ul class="form_ul">
-		<li class="li_font li_bottom"><span>入库人:</span><%= @storage.user.name %></li>
+		<li class="li_font li_bottom"><span>销售人:</span><%= @sale.user.name %></li>
 		<li>
 			<div id="save_products">
 				<table id="products_talbe" data-id-number=0 >
@@ -26,7 +26,7 @@
 						<td>单价</td>
 						<td>数量</td>
 					</tr>
-					<% @storage.bill_of_products.each do |product|%>
+					<% @sale.bill_of_products.each do |product|%>
 						<tr>
 							<td><%= product.product.name %></td>
 							<td><%= product.product.brand %></td>
@@ -39,8 +39,8 @@
 				</table>
 			</div>
 		</li>
-		<li class="li_font li_bottom"><span>总金额:</span><%= number_to_currency(@storage.price, :unit=>"￥")%></li>
-		<li class="li_font li_bottom"><span>开单时间:</span><%= @storage.created_at.to_s(:db)%></li>
-		<li class="li_font li_bottom"><span>备注:</span><%= @storage.remark %></li>
+		<li class="li_font li_bottom"><span>总金额:</span><%= number_to_currency(@sale.price, :unit=>"￥")%></li>
+		<li class="li_font li_bottom"><span>开单时间:</span><%= @sale.created_at.to_s(:db)%></li>
+		<li class="li_font li_bottom"><span>备注:</span><%= @sale.remark %></li>
 	</ul>
 </div>

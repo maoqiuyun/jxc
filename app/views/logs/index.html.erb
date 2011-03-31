@@ -14,7 +14,7 @@
 <%end%>
 <h2><a href="<%= logs_url %>">系统日志</a> &raquo; <a href="#" class="active">日志信息</a></h2>
 <div id="main">
-	<% form_for @search do |f|%>
+	<%= form_for @search do |f|%>
 		<h3>
 			开始时间:<%= f.text_field :created_at_gte ,:class => "datepicker" ,:size => 8 %>
 			结束时间:<%= f.text_field :created_at_lte ,:class => "datepicker" ,:size => 8 %>
