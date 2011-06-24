@@ -9,9 +9,9 @@ basic: &basic
 
 development:
   <<: *basic
-  host: 192.168.0.2
-  username: 51hejia
-  password: ruby
+  host: 127.0.0.1
+  username: root
+  password: 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
